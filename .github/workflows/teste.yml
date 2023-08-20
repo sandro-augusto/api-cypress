@@ -28,7 +28,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Step 1 Check version Allure, Node and Java
         run: |
-          allure --version
           node --version
           java -version
           
