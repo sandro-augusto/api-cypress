@@ -26,10 +26,11 @@ jobs:
       - uses: actions/checkout@v3.5.3
 
       # Runs a set of commands using the runners shell
-      - name: Step 1 Check version Allure, Node and Java
+      - name: Step 1 Check version Node, Java ans instalation ServeRest
         run: |
           node --version
           java -version
+          npx serverest
           
       # Runs a single command using the runners shell      
       - name: Step 2 Install Dependences
