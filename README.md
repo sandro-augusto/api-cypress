@@ -10,6 +10,12 @@
 
 * Java com a versão 1.8.0_371
 
+* Para instalar e rodar o projeto da API ServeRest
+
+```sh default
+* npx serverest
+```
+
 ## Comando para instalar as depências e plugin do projeto:
 ```sh default
 * yarn install
