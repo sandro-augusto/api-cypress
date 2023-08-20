@@ -22,6 +22,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Instalation Environment
+        run: npx serverest
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3.5.3
 
@@ -30,7 +33,6 @@ jobs:
         run: |
           node --version
           java -version
-          npx serverest
           
       # Runs a single command using the runners shell      
       - name: Step 2 Install Dependences
