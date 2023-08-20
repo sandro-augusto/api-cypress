@@ -3,15 +3,12 @@
 name: Cadastro API ServeRest
 
 # Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches:
-      - main
-      - sandro-augusto
-
-  # Allows you to run this workflow manually from the Actions tab
+on:  
   workflow_dispatch:
+    inputs:
+      cli: 
+        description: Run by cypress command line
+        default: yarn cypress run
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
