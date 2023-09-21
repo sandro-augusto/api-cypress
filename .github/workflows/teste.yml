@@ -28,4 +28,4 @@ jobs:
       run: sleep 10  # Aguarda 10 segundos para que o servidor seja iniciado corretamente
 
     - name: Run Cypress tests and generate Allure report
-      run: npm test
+      run: npx cypress run
