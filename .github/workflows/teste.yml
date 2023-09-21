@@ -21,6 +21,9 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Start Serverest
+      run: npx serverest start
+
     - name: Run Cypress tests and generate Allure report
       run: |
         npm run cypress:run
