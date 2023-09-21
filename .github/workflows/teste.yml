@@ -28,13 +28,4 @@ jobs:
       run: sleep 10  # Aguarda 10 segundos para que o servidor seja iniciado corretamente
 
     - name: Run Cypress tests and generate Allure report
-      run: |
-        npm run cypress:run
-        npm run allure:report
-        npm run allure:serve
-
-    - name: Upload Allure report
-      uses: actions/upload-artifact@v2
-      with:
-        name: allure-report
-        path: ./allure-report
+      run: npm test
