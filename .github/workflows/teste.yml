@@ -1,28 +1,34 @@
-name: Run Serverest and Generate Allure Reports
+name: API Tests with Cypress and Allure Report
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '18'
+        node-version: '18'  # Use a versão desejada do Node.js
 
     - name: Install dependencies
       run: npm install
 
-    - name: Start Serverest
-      run: npx serverest start
+    - name: Run Cypress tests and generate Allure report
+      run: |
+        npm run cypress:run
+        npm run allure:report
+        npm run allure:serve
 
-    - name: Run tests and generate Allure reports
-      run: npm-run-all run_allure nallure_serve
-
-    - name: Stop Serverest
-      run: npx serverest stop
+    - name: Upload Allure report
+      uses: actions/upload-artifact@v2
+      with:
+        name: allure-report
+        path: ./allure-report
