@@ -8,7 +8,10 @@
     "run_allure_npm": "npx cypress run --env allure=true",
     "yallure_serve": "yarn allure serve",
     "nallure_serve": "npx allure serve",
-    "test": "npm-run-all run_allure nallure_serve"
+    "test": "npm-run-all run_allure nallure_serve",
+    "cypress:run": "cypress run",
+    "allure:report": "allure generate allure-results --clean && allure open",
+    "allure:serve": "allure serve allure-results"
   },
   "keywords": [],
   "author": "",
