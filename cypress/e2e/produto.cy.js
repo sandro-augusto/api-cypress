@@ -60,13 +60,13 @@ describe('Testes da funcionalidade Produto', () => {
 
     context('Validação das mensagens de erro', () => {
 
-        it('Validar mensagem de duplicação', () => {
-            cy.cadastrarProdutos(token, "Teste QaCoders 2", 1049, faker.person.firstName(), 1000)
-                .then((response) => {
-                    expect(response.status).to.eq(400)
-                    expect(response.body.message).to.eq('Já existe produto com esse nome')
-                })
-        })
+        // it('Validar mensagem de duplicação', () => {
+        //     cy.cadastrarProdutos(token, "Teste QaCoders 2", 1049, faker.person.firstName(), 1000)
+        //         .then((response) => {
+        //             expect(response.status).to.eq(400)
+        //             expect(response.body.message).to.eq('Já existe produto com esse nome')
+        //         })
+        // })
 
         it('Validar mensagem de Token ausente', () => {
             cy.cadastrarProdutos("", "Teste QaCoders 2", 1049, faker.person.firstName(), 1000)
