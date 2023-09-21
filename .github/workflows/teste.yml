@@ -1,47 +1,31 @@
-# This is a basic workflow to help you get started with Actions
+name: Run Serverest and Generate Allure Reports
 
-name: Cadastro API ServeRest
+on: [push]
 
-# Controls when the action will run. 
-on:  
-  workflow_dispatch:
-    inputs:
-      cli: 
-        description: Run by cypress command line
-        default: yarn cypress run
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Instalation Environment
-        run: npx serverest
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3.5.3
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14
 
-      # Runs a set of commands using the runners shell
-      - name: Step 1 Check version Node, Java ans instalation ServeRest
-        run: |
-          node --version
-          java -version
-          
-      # Runs a single command using the runners shell      
-      - name: Step 2 Install Dependences
-        run: yarn install
-        
-      # Runs a set of commands using the runners shell
-      - name: Step 3 Execute projets
-        run: yarn cypress run --env allure=true
-   
-      # Runs a set of commands using the runners shell
-      - name: Step 4 Archive production artifacts
-        uses: actions/upload-artifact@v2
-        with:
-            name: report
-            path: .allure-results/index.html
+    - name: Install dependencies
+      run: npm install
+
+    - name: Start Serverest
+      run: npx serverest start
+
+    - name: Run tests and generate Allure reports
+      run: |
+        npx cypress run
+        npx allure generate --clean
+        npx allure open
+
+    - name: Stop Serverest
+      run: npx serverest stop
