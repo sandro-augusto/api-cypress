@@ -21,8 +21,12 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Start Serverest
-      run: npx serverest start
+    - name: Start Local Server
+      run: npx serverest
+      background: true  # Inicia o servidor em segundo plano
+    
+    - name: Wait for Server to Start
+      run: sleep 10  # Aguarda 10 segundos para que o servidor seja iniciado corretamente
 
     - name: Run Cypress tests and generate Allure report
       run: |
