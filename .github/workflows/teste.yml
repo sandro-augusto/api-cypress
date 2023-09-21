@@ -22,10 +22,7 @@ jobs:
       run: npx serverest start
 
     - name: Run tests and generate Allure reports
-      run: |
-        npx cypress run
-        npx allure generate --clean
-        npx allure open
+      run: npm-run-all run_allure nallure_serve
 
     - name: Stop Serverest
       run: npx serverest stop
